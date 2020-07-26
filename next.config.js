@@ -1,4 +1,9 @@
 module.exports = {
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'mdx'],
+  experimental: {
+    modern: true
+  },
+
   webpack: (config, options) => {
     config.module.rules.push({
       test: /\.(jpe?g|png|svg|gif|ico|webp|jp2)$/,
