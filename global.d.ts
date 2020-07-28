@@ -3,6 +3,7 @@ declare module 'remark-html' {
   export default html
 }
 
+// image
 declare module '*.jpg'
 declare module '*.jpeg'
 declare module '*.png'
@@ -11,6 +12,7 @@ declare module '*.ico'
 declare module '*.webp'
 declare module '*.jp2'
 
+// mdx
 declare module '@mdx-js/react' {
   import * as React from 'react'
   type ComponentType =
