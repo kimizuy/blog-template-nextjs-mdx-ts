@@ -6,8 +6,11 @@ import Link from 'next/link'
 import Date from '@/components/date'
 import { GetStaticProps } from 'next'
 import getAllPostPreviews from '@/lib/getAllPostPreviews'
+import Meta from '@/types/meta'
 
-// const posts = getAllPostPreviews()
+type Post = { link: string; module: { default: any; meta: Meta } }
+
+const posts: Post[] = getAllPostPreviews()
 
 export default function Home({
   allPostsData
@@ -33,14 +36,15 @@ export default function Home({
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href="/posts/[id]" as={`/posts/${id}`}>
-                <a>{title}</a>
+          {posts.map(({ link, module: { default: Component, meta } }) => (
+            <li className={utilStyles.listItem} key={link}>
+              <Link href={`/posts${link}`}>
+                <a>{meta.title}</a>
               </Link>
               <br />
+              {/* <Component /> */}
               <small className={utilStyles.lightText}>
-                <Date dateString={date} />
+                <Date dateString={meta.date} />
               </small>
             </li>
           ))}
