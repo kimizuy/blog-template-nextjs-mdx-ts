@@ -10,7 +10,7 @@
   "dependencies": {
     "date-fns": "^2.11.1",
     "gray-matter": "^4.0.2",
-    "next": "latest",
+    "next": "^9.5.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "remark": "^12.0.0",
@@ -23,6 +23,7 @@
     "@types/react": "^16.9.32",
     "@types/webpack-env": "^1.15.2",
     "file-loader": "^6.0.0",
+    "simple-functional-loader": "^1.2.1",
     "typescript": "^3.8.3"
   }
 }

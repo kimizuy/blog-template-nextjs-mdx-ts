@@ -37,7 +37,7 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
             <Link href="/">
               <a>
                 <img
-                  src="/images/profile.jpg"
+                  src={profile}
                   className={`${styles.headerImage} ${utilStyles.borderCircle}`}
                   alt={name}
                 />
