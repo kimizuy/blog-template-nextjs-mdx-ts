@@ -4,7 +4,7 @@ import utilStyles from '@/styles/utils.module.css'
 import Link from 'next/link'
 import Date from '@/components/date'
 import getAllPostPreviews from '@/lib/getAllPostPreviews'
-import Meta from '@/types/meta'
+import { Meta } from '@/types/post'
 
 type Post = { link: string; module: { default: any; meta: Meta } }
 
