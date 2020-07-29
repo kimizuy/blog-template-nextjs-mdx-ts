@@ -1,4 +1,5 @@
 const { createLoader } = require('simple-functional-loader')
+const rehypePrism = require('@mapbox/rehype-prism')
 
 module.exports = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'mdx'],
@@ -25,19 +26,7 @@ module.exports = {
       {
         loader: '@mdx-js/loader',
         options: {
-          rehypePlugins: [
-            rehypePrism,
-            () => {
-              return (tree) => {
-                visit(tree, 'element', (node, index, parent) => {
-                  let [token, type] = node.properties.className || []
-                  if (token === 'token') {
-                    node.properties.className = [tokenClassNames[type]]
-                  }
-                })
-              }
-            }
-          ]
+          rehypePlugins: [rehypePrism]
         }
       }
     ]
@@ -52,7 +41,6 @@ module.exports = {
             createLoader(function (src) {
               if (src.includes('<!--more-->')) {
                 const [preview] = src.split('<!--more-->')
-                console.log(preview)
                 return this.callback(null, preview)
               }
 
@@ -83,15 +71,15 @@ module.exports = {
       ]
     })
 
-    if (!options.dev && options.isServer) {
-      const originalEntry = config.entry
+    // if (!options.dev && options.isServer) {
+    //   const originalEntry = config.entry
 
-      config.entry = async () => {
-        const entries = { ...(await originalEntry()) }
-        entries['./scripts/build-rss.js'] = './scripts/build-rss.js'
-        return entries
-      }
-    }
+    //   config.entry = async () => {
+    //     const entries = { ...(await originalEntry()) }
+    //     entries['./scripts/build-rss.js'] = './scripts/build-rss.js'
+    //     return entries
+    //   }
+    // }
 
     return config
   }

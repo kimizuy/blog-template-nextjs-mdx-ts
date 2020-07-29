@@ -1,10 +1,8 @@
 import Head from 'next/head'
 import Layout, { siteTitle } from '@/components/layout'
 import utilStyles from '@/styles/utils.module.css'
-import { getSortedPostsData } from '@/lib/posts'
 import Link from 'next/link'
 import Date from '@/components/date'
-import { GetStaticProps } from 'next'
 import getAllPostPreviews from '@/lib/getAllPostPreviews'
 import Meta from '@/types/meta'
 
@@ -12,15 +10,7 @@ type Post = { link: string; module: { default: any; meta: Meta } }
 
 const posts: Post[] = getAllPostPreviews()
 
-export default function Home({
-  allPostsData
-}: {
-  allPostsData: {
-    date: string
-    title: string
-    id: string
-  }[]
-}) {
+export default function Home() {
   return (
     <Layout home>
       <Head>
@@ -38,7 +28,7 @@ export default function Home({
         <ul className={utilStyles.list}>
           {posts.map(({ link, module: { default: Component, meta } }) => (
             <li className={utilStyles.listItem} key={link}>
-              <Link href={`/posts${link}`}>
+              <Link href={link}>
                 <a>{meta.title}</a>
               </Link>
               <br />
@@ -52,13 +42,4 @@ export default function Home({
       </section>
     </Layout>
   )
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData()
-  return {
-    props: {
-      allPostsData
-    }
-  }
 }
