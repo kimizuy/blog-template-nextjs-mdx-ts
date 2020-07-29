@@ -26,13 +26,13 @@ export default function Home() {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {posts.map(({ link, module: { default: Component, meta } }) => (
+          {posts.map(({ link, module: { default: Excerpt, meta } }) => (
             <li className={utilStyles.listItem} key={link}>
               <Link href={link}>
                 <a>{meta.title}</a>
               </Link>
               <br />
-              {/* <Component /> */}
+              <Excerpt />
               <small className={utilStyles.lightText}>
                 <Date dateString={meta.date} />
               </small>
