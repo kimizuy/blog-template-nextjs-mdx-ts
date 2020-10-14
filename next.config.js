@@ -1,12 +1,8 @@
 const { createLoader } = require('simple-functional-loader')
 const rehypePrism = require('@mapbox/rehype-prism')
 
-module.exports = {
+const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'mdx'],
-  experimental: {
-    modern: true,
-  },
-
   webpack: (config, options) => {
     config.module.rules.push({
       test: /\.(jpe?g|png|svg|gif|ico|webp|jp2)$/,
@@ -90,3 +86,5 @@ module.exports = {
     return config
   },
 }
+
+module.exports = nextConfig
