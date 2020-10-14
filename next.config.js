@@ -4,7 +4,7 @@ const rehypePrism = require('@mapbox/rehype-prism')
 module.exports = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'mdx'],
   experimental: {
-    modern: true
+    modern: true,
   },
 
   webpack: (config, options) => {
@@ -15,10 +15,10 @@ module.exports = {
           loader: 'file-loader',
           options: {
             publicPath: '/_next',
-            name: 'static/media/[name].[hash].[ext]'
-          }
-        }
-      ]
+            name: 'static/media/[name].[hash].[ext]',
+          },
+        },
+      ],
     })
 
     const mdx = [
@@ -26,9 +26,9 @@ module.exports = {
       {
         loader: '@mdx-js/loader',
         options: {
-          rehypePlugins: [rehypePrism]
-        }
-      }
+          rehypePlugins: [rehypePrism],
+        },
+      },
     ]
 
     config.module.rules.push({
@@ -46,8 +46,8 @@ module.exports = {
 
               const [preview] = src.split('<!--/excerpt-->')
               return this.callback(null, preview.replace('<!--excerpt-->', ''))
-            })
-          ]
+            }),
+          ],
         },
         {
           use: [
@@ -57,18 +57,24 @@ module.exports = {
                 'import Post from "@/components/post"',
                 'export { getStaticProps } from "@/lib/getStaticProps"',
                 src,
-                'export default (props) => <Post meta={meta} {...props} />'
+                'export default (props) => <Post meta={meta} {...props} />',
               ].join('\n')
 
               if (content.includes('<!--more-->')) {
-                return this.callback(null, content.split('<!--more-->').join('\n'))
+                return this.callback(
+                  null,
+                  content.split('<!--more-->').join('\n')
+                )
               }
 
-              return this.callback(null, content.replace(/<!--excerpt-->.*<!--\/excerpt-->/s, ''))
-            })
-          ]
-        }
-      ]
+              return this.callback(
+                null,
+                content.replace(/<!--excerpt-->.*<!--\/excerpt-->/s, '')
+              )
+            }),
+          ],
+        },
+      ],
     })
 
     // if (!options.dev && options.isServer) {
@@ -82,5 +88,5 @@ module.exports = {
     // }
 
     return config
-  }
+  },
 }

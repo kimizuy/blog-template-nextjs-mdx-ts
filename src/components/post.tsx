@@ -4,7 +4,13 @@ import utilStyles from '@/styles/utils.module.css'
 import { Meta } from '@/types/post'
 import Head from 'next/head'
 
-export default function Post({ meta, children }: { meta: Meta; children: React.ReactNode }) {
+export default function Post({
+  meta,
+  children,
+}: {
+  meta: Meta
+  children: React.ReactNode
+}) {
   return (
     <Layout>
       <Head>
