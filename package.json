@@ -8,7 +8,7 @@
     "build:rss": "node ./.next/server/scripts/build-rss.js",
     "start": "next start",
     "fix": "run-s fix:eslint fix:prettier",
-    "fix:eslint": "yarn eslint . --ext ts --ext tsx --ext js",
+    "fix:eslint": "yarn eslint .",
     "fix:prettier": "yarn prettier --write ."
   },
   "dependencies": {

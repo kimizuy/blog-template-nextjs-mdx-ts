@@ -13,12 +13,12 @@ function generate() {
     feed_url: `${SITE_URL}/feed.xml`,
   })
 
-  previews.map((preview) => {
+  previews.map(({ link, module: { meta } }) => {
     feed.item({
-      title: preview.module.meta.title,
-      guid: preview.link,
-      url: `${SITE_URL + preview.link}`,
-      date: preview.module.meta.date,
+      title: meta.title,
+      guid: link,
+      url: `${SITE_URL + link}`,
+      date: meta.date,
     })
   })
 
