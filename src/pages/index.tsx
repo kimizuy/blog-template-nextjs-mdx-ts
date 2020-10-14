@@ -6,11 +6,11 @@ import Date from '@/components/date'
 import getAllPostPreviews from '@/lib/getAllPostPreviews'
 import { Meta } from '@/types/post'
 
-type Post = { link: string; module: { default: any; meta: Meta } }
+type Preview = { link: string; module: { default: any; meta: Meta } }
 
-const posts: Post[] = getAllPostPreviews()
+const previews: Preview[] = getAllPostPreviews()
 
-export default function Home() {
+export default function Home(): JSX.Element {
   return (
     <Layout home>
       <Head>
@@ -26,7 +26,7 @@ export default function Home() {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {posts.map(({ link, module: { default: Excerpt, meta } }) => (
+          {previews.map(({ link, module: { default: Excerpt, meta } }) => (
             <li className={utilStyles.listItem} key={link}>
               <Link href={link}>
                 <a>{meta.title}</a>

@@ -1,3 +1,5 @@
+import { Preview } from '@/types/post'
+
 function importAll(r) {
   return r.keys().map((fileName) => ({
     link: `/posts${fileName.substr(1).replace(/\/index\.mdx$/, '')}`,
@@ -11,7 +13,7 @@ function dateSortDesc(a, b) {
   return 0
 }
 
-export default function getAllPostPreviews() {
+export default function getAllPostPreviews(): Preview[] {
   return importAll(
     require.context('../pages/posts/?preview', true, /\.mdx$/)
   ).sort((a, b) => dateSortDesc(a.module.meta.date, b.module.meta.date))
