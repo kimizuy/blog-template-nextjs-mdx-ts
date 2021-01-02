@@ -2,7 +2,9 @@ import Date from '@/components/date'
 import Layout from '@/components/layout'
 import utilStyles from '@/styles/utils.module.css'
 import { Meta } from '@/types/post'
+import { Components, MDXProvider } from '@mdx-js/react'
 import Head from 'next/head'
+import CodeBlock from './codeBlock'
 
 export default function Post({
   meta,
@@ -11,6 +13,10 @@ export default function Post({
   meta: Meta
   children: React.ReactNode
 }) {
+  const mdxComponents: Components = {
+    code: CodeBlock,
+  }
+
   return (
     <Layout>
       <Head>
@@ -21,7 +27,7 @@ export default function Post({
         <div className={utilStyles.lightText}>
           <Date dateString={meta.date} />
         </div>
-        {children}
+        <MDXProvider components={mdxComponents}>{children}</MDXProvider>
       </article>
     </Layout>
   )

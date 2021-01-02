@@ -1,5 +1,4 @@
 const { createLoader } = require('simple-functional-loader')
-const rehypePrism = require('@mapbox/rehype-prism')
 
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'mdx'],
@@ -21,9 +20,6 @@ const nextConfig = {
       options.defaultLoaders.babel,
       {
         loader: '@mdx-js/loader',
-        options: {
-          rehypePlugins: [rehypePrism],
-        },
       },
     ]
 
@@ -72,16 +68,6 @@ const nextConfig = {
         },
       ],
     })
-
-    // if (!options.dev && options.isServer) {
-    //   const originalEntry = config.entry
-
-    //   config.entry = async () => {
-    //     const entries = { ...(await originalEntry()) }
-    //     entries['./scripts/build-rss.js'] = './scripts/build-rss.js'
-    //     return entries
-    //   }
-    // }
 
     return config
   },
