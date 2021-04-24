@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "date-fns": "^2.21.1",
+    "gray-matter": "^4.0.2",
+    "mdx-bundler": "^3.2.1",
     "next": "^10.1.3",
     "prism-react-renderer": "^1.2.0",
     "react": "^17.0.2",
